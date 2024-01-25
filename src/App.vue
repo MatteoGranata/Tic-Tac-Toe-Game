@@ -113,11 +113,11 @@ const prompt = ref(currentPlayer)
     <div class="notify-container">
       <div class="notify">
         <p v-if="winner">{{ winner }} wins!</p>
-        <p v-else-if="isTie">the game ended in a draw</p>
+        <p v-else-if="isTie">draw!</p>
       </div>
     </div>
       <div class="button-container">
-        <button @click="reset">restart</button>
+        <button class="button" @click="reset">restart</button>
       </div>
     
   </div>

@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-
 body {
   width: 100vw;
   height: 100vh;
@@ -25,7 +24,7 @@ body {
 
 .title-container {
   position: relative;
-  top: -5%;
+  top: -2%;
   height: fit-content;
   width: 100%;
   display: flex;
@@ -49,13 +48,12 @@ body {
 .playing-player {
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 2%;
-  font-size: 2rem;
+  margin: 2%;
+  font-size: 3vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-bottom: 3%;
 }
 
 .player {
@@ -75,16 +73,13 @@ body {
   width: 11vh;
   height: 11vh;
   float: left;
-  margin-right: -1px;
-  margin-bottom: -1px;
   background-color: #e8e8e80c;
   text-align: center;
   border: 1px solid #e4dfd9;
   cursor: pointer;
   font-size: 10vh;
   font-family: 'Major Mono Display', monospace;
-  margin: 3px;
-
+  margin: 2px;
 }
 
 .cell-x {
@@ -109,9 +104,10 @@ body {
 }
 
 .score {
-  font-size: 1.5rem;
+  font-size: 2vh;
   text-align: center;
-  margin-top: 2%;
+  margin: 2%;
+  margin-top: 3%;
   line-height: 4vh;
 }
 
@@ -124,7 +120,7 @@ body {
 }
 
 .notify {
-  font-size: 3rem;
+  font-size: 3vh;
 }
 
 .button-container {
@@ -134,9 +130,9 @@ body {
   width: 100%;
 }
 
-button {
-  margin-top: 1%;
-  font-size: 16px;
+.button {
+  margin: 1%;
+  font-size: 2vh;
   padding: 1.2vh;
   border-radius: 5px;
   background-color: #e8e8e80c;
@@ -144,5 +140,26 @@ button {
   color: #e4dfd9;
   cursor: pointer;
   font-family: 'Major Mono Display', monospace;
+}
 
+@media (max-width:450px) {
+  .notify {
+    font-size: 2.2rem;
+  }
+
+  .title-container {
+    top: -5%;
+  }
+
+  .title {
+    font-size: 7vh;
+  }
+
+  .playing-player {
+    margin-bottom: 5%;
+  }
+
+  .score {
+    font-size: 1.2rem;
+  }
 }
