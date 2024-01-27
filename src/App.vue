@@ -92,7 +92,7 @@ const prompt = ref(currentPlayer)
 <template>
   <div class="container-app">
     <div class="title-container">
-      <h1 class="title">tictac toe game</h1>
+      <h1 class="title">tic tac toe game</h1>
     </div>
     <div class="container-playing-player">
       <p class="playing-player"> current player: <span class="player"> {{ currentPlayer }}</span></p>
@@ -107,8 +107,8 @@ const prompt = ref(currentPlayer)
       </div>
     </div>
     <div class="score-container">
-      <div class="score">player x has {{ countX }} point. <br> draw {{ countDraw }} <br> player o have {{ countO }}
-        points.</div>
+      <div class="score">player x has {{ countX }} point <br> draw {{ countDraw }} <br> player o have {{ countO }}
+        points</div>
     </div>
     <div class="notify-container">
       <div class="notify">
