@@ -33,7 +33,6 @@ function hide() {
     box-sizing: border-box;
 }
 
-
 body {
     width: 100vw;
     height: 100vh;
@@ -42,7 +41,6 @@ body {
     background: #0D0D0D;
     color: #e4dfd9;
 }
-
 .container-rules {
     display: flex;
     justify-content: center;
@@ -53,21 +51,17 @@ body {
     height: 100%;
     backdrop-filter: blur(8px);
 }
-
 .title {
     margin-top: 5%;
 }
-
 .rules {
     width: 30vw;
-    height: 60%;
+    height: fit-content;
     backdrop-filter: blur(7px);
-    box-shadow: #0d0d0d1f 10px 10px 30px;
     border-radius: 30px;
     background-color: #e4dfd906;
     justify-content: center;
 }
-
 .explanation {
     text-align: center;
     padding: 5%;
@@ -80,7 +74,6 @@ body {
         width: 90%;
         height: 70%;
     }
-
     .explanation {
         font-size: 2vh;
     }
