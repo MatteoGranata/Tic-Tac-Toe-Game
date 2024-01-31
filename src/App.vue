@@ -2,7 +2,6 @@
 import { ref, reactive } from 'vue';
 import Rules from './components/Rules.vue'
 
-
 const winner = ref<string | null>(null);
 const isTie = ref(false);
 const gameover = ref(false);
@@ -29,7 +28,6 @@ const checkTie = () => {
   return true;
 }
 
-
 const checkWin = () => {
   const a = currentPlayer.value;
 
@@ -38,7 +36,6 @@ const checkWin = () => {
     if (board.every(row => row[i] === a)) return true;
   }
 
-  // Check diagonals
   if (board[0][0] === a && board[1][1] === a && board[2][2] === a) return true;
   if (board[0][2] === a && board[1][1] === a && board[2][0] === a) return true;
 
@@ -75,17 +72,14 @@ const reset = () => {
   winner.value = null;
   isTie.value = false;
 
-
   if (currentPlayer.value == 'o') {
     currentPlayer.value = 'x'
   } else if (currentPlayer.value == 'x') {
     currentPlayer.value = 'o'
   }
-
 }
 
 const prompt = ref(currentPlayer)
-
 
 </script>
 
@@ -119,10 +113,7 @@ const prompt = ref(currentPlayer)
       <div class="button-container">
         <button class="button" @click="reset">restart</button>
       </div>
-    
   </div>
-
-
   <Rules :msg="prompt" />
 </template>
 
