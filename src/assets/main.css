@@ -96,6 +96,17 @@ body {
   justify-content: center;
 }
 
+.winner {
+  color: rgb(11, 188, 14);
+  animation: blinker .5s ease-in-out infinite;
+}
+
+@keyframes blinker {  
+  50% { 
+      color: #E8E8E8;
+  }
+}
+
 .score-container {
   display: flex;
   width: 100%;

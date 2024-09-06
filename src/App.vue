@@ -28,19 +28,34 @@ const checkTie = () => {
   return true;
 }
 
+const winningCells = ref<number[][]>([]);
+
 const checkWin = () => {
   const a = currentPlayer.value;
 
   for (let i = 0; i < 3; i++) {
-    if (board[i].every(cell => cell === a)) return true;
-    if (board.every(row => row[i] === a)) return true;
+    if (board[i].every(cell => cell === a)) {
+      winningCells.value = [[i, 0], [i, 1], [i, 2]];
+      return true;
+    }
+    if (board.every(row => row[i] === a)) {
+      winningCells.value = [[0, i], [1, i], [2, i]];
+      return true;
+    }
   }
 
-  if (board[0][0] === a && board[1][1] === a && board[2][2] === a) return true;
-  if (board[0][2] === a && board[1][1] === a && board[2][0] === a) return true;
+  if (board[0][0] === a && board[1][1] === a && board[2][2] === a) {
+    winningCells.value = [[0, 0], [1, 1], [2, 2]];
+    return true;
+  }
+  if (board[0][2] === a && board[1][1] === a && board[2][0] === a) {
+    winningCells.value = [[0, 2], [1, 1], [2, 0]];
+    return true;
+  }
 
   return false;
 };
+
 
 const playMove = (row: number, col: number) => {
   if (!board[row][col] && !winner.value) {
@@ -71,12 +86,9 @@ const reset = () => {
   gameover.value = false;
   winner.value = null;
   isTie.value = false;
+  winningCells.value = [];
 
-  if (currentPlayer.value == 'o') {
-    currentPlayer.value = 'x'
-  } else if (currentPlayer.value == 'x') {
-    currentPlayer.value = 'o'
-  }
+  currentPlayer.value = currentPlayer.value === 'o' ? 'x' : 'o';
 }
 
 const prompt = ref(currentPlayer)
@@ -94,14 +106,14 @@ const prompt = ref(currentPlayer)
     <div class="cell-container">
       <div class="row" v-for="(row, rowIndex) of board" :key="rowIndex">
         <div class="cell" v-for="(cell, cellIndex) of row" :key="cellIndex"
-          :class="{ 'cell-x': cell === 'x', 'cell-o': cell === 'o' }" :disabled="cell !== null"
-          @click="playMove(rowIndex, cellIndex)">
+          :class="{ 'cell-x': cell === 'x', 'cell-o': cell === 'o', 'winner': winningCells.some(coord => coord[0] === rowIndex && coord[1] === cellIndex) }"
+          :disabled="cell !== null" @click="playMove(rowIndex, cellIndex)">
           {{ cell }}
         </div>
       </div>
     </div>
     <div class="score-container">
-      <div class="score">player x has {{ countX }} point <br> draw {{ countDraw }} <br> player o have {{ countO }}
+      <div class="score">player x has {{ countX }} point <br> draw {{ countDraw }} <br> player o has {{ countO }}
         points</div>
     </div>
     <div class="notify-container">
@@ -110,11 +122,9 @@ const prompt = ref(currentPlayer)
         <p v-else-if="isTie">draw!</p>
       </div>
     </div>
-      <div class="button-container">
-        <button class="button" @click="reset">restart</button>
-      </div>
+    <div class="button-container">
+      <button class="button" @click="reset">restart</button>
+    </div>
   </div>
   <Rules :msg="prompt" />
 </template>
-
-
