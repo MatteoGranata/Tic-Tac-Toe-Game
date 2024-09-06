@@ -8,8 +8,8 @@ body {
   width: 100vw;
   height: 100vh;
   margin: 0;
-  font-family: 'Major Mono Display', monospace;
-  background: #0D0D0D;
+  font-family: "Major Mono Display", monospace;
+  background: #0d0d0d;
   color: #e4dfd9;
 }
 
@@ -57,7 +57,7 @@ body {
 }
 
 .player {
-  font-family: 'Major Mono Display', monospace;
+  font-family: "Major Mono Display", monospace;
 }
 
 .cell-container {
@@ -78,19 +78,19 @@ body {
   border: 1px solid #e4dfd9;
   cursor: pointer;
   font-size: 10vh;
-  font-family: 'Major Mono Display', monospace;
+  font-family: "Major Mono Display", monospace;
   margin: 2px;
 }
 
 .cell-x {
-  color: #E8E8E8;
+  color: #e8e8e8;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .cell-o {
-  color: #E8E8E8;
+  color: #e8e8e8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,12 +98,12 @@ body {
 
 .winner {
   color: rgb(11, 188, 14);
-  animation: blinker .5s ease-in-out infinite;
+  animation: blinker 0.5s ease-in-out infinite;
 }
 
-@keyframes blinker {  
-  50% { 
-      color: #E8E8E8;
+@keyframes blinker {
+  50% {
+    color: #e8e8e8;
   }
 }
 
@@ -150,10 +150,10 @@ body {
   border: 1px solid #e4dfd9;
   color: #e4dfd9;
   cursor: pointer;
-  font-family: 'Major Mono Display', monospace;
+  font-family: "Major Mono Display", monospace;
 }
 
-@media (max-width:450px) {
+@media (max-width: 450px) {
   .notify {
     font-size: 2.2rem;
   }

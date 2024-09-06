@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
-import Rules from './components/Rules.vue'
+import { ref, reactive } from "vue";
+import Rules from "./components/Rules.vue";
 
 const winner = ref<string | null>(null);
 const isTie = ref(false);
 const gameover = ref(false);
-const currentPlayer = ref('x');
+const currentPlayer = ref("x");
 
-const countX = ref(0)
-const countO = ref(0)
-const countDraw = ref(0)
+const countX = ref(0);
+const countO = ref(0);
+const countDraw = ref(0);
 
 let board = reactive([
-  ['', '', ''],
-  ['', '', ''],
-  ['', '', '']
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
 ]);
 
 const checkTie = () => {
@@ -26,7 +26,7 @@ const checkTie = () => {
     }
   }
   return true;
-}
+};
 
 const winningCells = ref<number[][]>([]);
 
@@ -34,53 +34,68 @@ const checkWin = () => {
   const a = currentPlayer.value;
 
   for (let i = 0; i < 3; i++) {
-    if (board[i].every(cell => cell === a)) {
-      winningCells.value = [[i, 0], [i, 1], [i, 2]];
+    if (board[i].every((cell) => cell === a)) {
+      winningCells.value = [
+        [i, 0],
+        [i, 1],
+        [i, 2],
+      ];
       return true;
     }
-    if (board.every(row => row[i] === a)) {
-      winningCells.value = [[0, i], [1, i], [2, i]];
+    if (board.every((row) => row[i] === a)) {
+      winningCells.value = [
+        [0, i],
+        [1, i],
+        [2, i],
+      ];
       return true;
     }
   }
 
   if (board[0][0] === a && board[1][1] === a && board[2][2] === a) {
-    winningCells.value = [[0, 0], [1, 1], [2, 2]];
+    winningCells.value = [
+      [0, 0],
+      [1, 1],
+      [2, 2],
+    ];
     return true;
   }
   if (board[0][2] === a && board[1][1] === a && board[2][0] === a) {
-    winningCells.value = [[0, 2], [1, 1], [2, 0]];
+    winningCells.value = [
+      [0, 2],
+      [1, 1],
+      [2, 0],
+    ];
     return true;
   }
 
   return false;
 };
 
-
 const playMove = (row: number, col: number) => {
   if (!board[row][col] && !winner.value) {
     board[row][col] = currentPlayer.value;
     if (checkWin()) {
       winner.value = currentPlayer.value;
-      if (winner.value == 'x') {
-        countX.value++
-      } else if (winner.value == 'o') {
-        countO.value++
+      if (winner.value == "x") {
+        countX.value++;
+      } else if (winner.value == "o") {
+        countO.value++;
       }
     } else if (checkTie()) {
       isTie.value = true;
-      countDraw.value++
+      countDraw.value++;
     } else {
-      currentPlayer.value = currentPlayer.value === 'x' ? 'o' : 'x';
+      currentPlayer.value = currentPlayer.value === "x" ? "o" : "x";
     }
   }
-}
+};
 
 const reset = () => {
   board = [
-    ['', '', ''],
-    ['', '', ''],
-    ['', '', '']
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""],
   ];
 
   gameover.value = false;
@@ -88,11 +103,10 @@ const reset = () => {
   isTie.value = false;
   winningCells.value = [];
 
-  currentPlayer.value = currentPlayer.value === 'o' ? 'x' : 'o';
-}
+  currentPlayer.value = currentPlayer.value === "o" ? "x" : "o";
+};
 
-const prompt = ref(currentPlayer)
-
+const prompt = ref(currentPlayer);
 </script>
 
 <template>
@@ -101,20 +115,36 @@ const prompt = ref(currentPlayer)
       <h1 class="title">tic tac toe game</h1>
     </div>
     <div class="container-playing-player">
-      <p class="playing-player"> current player: <span class="player"> {{ currentPlayer }}</span></p>
+      <p class="playing-player">
+        current player: <span class="player"> {{ currentPlayer }}</span>
+      </p>
     </div>
     <div class="cell-container">
       <div class="row" v-for="(row, rowIndex) of board" :key="rowIndex">
-        <div class="cell" v-for="(cell, cellIndex) of row" :key="cellIndex"
-          :class="{ 'cell-x': cell === 'x', 'cell-o': cell === 'o', 'winner': winningCells.some(coord => coord[0] === rowIndex && coord[1] === cellIndex) }"
-          :disabled="cell !== null" @click="playMove(rowIndex, cellIndex)">
+        <div
+          class="cell"
+          v-for="(cell, cellIndex) of row"
+          :key="cellIndex"
+          :class="{
+            'cell-x': cell === 'x',
+            'cell-o': cell === 'o',
+            winner: winningCells.some(
+              (coord) => coord[0] === rowIndex && coord[1] === cellIndex,
+            ),
+          }"
+          :disabled="cell !== null"
+          @click="playMove(rowIndex, cellIndex)"
+        >
           {{ cell }}
         </div>
       </div>
     </div>
     <div class="score-container">
-      <div class="score">player x has {{ countX }} point <br> draw {{ countDraw }} <br> player o has {{ countO }}
-        points</div>
+      <div class="score">
+        player x has {{ countX }} point <br />
+        draw {{ countDraw }} <br />
+        player o has {{ countO }} points
+      </div>
     </div>
     <div class="notify-container">
       <div class="notify">
